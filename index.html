@@ -179,9 +179,10 @@
       }
       .custom-calendar {
   width: 100%;
-  max-width: 320px;
+  max-width: 400px; /* Adjust max width for better control */
   margin: 0 auto;
-  position: relative;
+  padding: 0 15px;
+  text-align: center;
 }
 
 .custom-calendar label {
@@ -190,7 +191,7 @@
   color: #4a5568;
   margin-bottom: 8px;
   display: block;
-  text-align: left;
+  text-align: center; /* Ensures label is centered */
 }
 
 .custom-calendar input {
@@ -202,6 +203,7 @@
   color: #2d3748;
   background-color: #f9fafb;
   transition: all 0.3s ease;
+  text-align: center; /* Center the text inside the input */
 }
 
 .custom-calendar input:focus {
@@ -212,8 +214,8 @@
 
 @media (max-width: 768px) {
   .custom-calendar {
-    max-width: 100%;
-    padding: 0 15px;
+    max-width: 90%; /* Expand to use 90% of screen width */
+    padding: 0 10px;
   }
 
   .custom-calendar label {
@@ -223,6 +225,7 @@
   .custom-calendar input {
     padding: 14px 18px;
     font-size: 18px;
+    border-radius: 15px; /* Make input more rounded on mobile */
   }
 }
 
