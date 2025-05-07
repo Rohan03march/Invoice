@@ -177,70 +177,16 @@
           width: 100%;
         }
       }
-      .custom-calendar {
-  width: 100%;
-  max-width: 400px; /* Adjust max width for better control */
-  margin: 0 auto;
-  padding: 0 15px;
-  text-align: center;
-}
-
-.custom-calendar label {
-  font-size: 14px;
-  font-weight: 600;
-  color: #4a5568;
-  margin-bottom: 8px;
-  display: block;
-  text-align: center; /* Ensures label is centered */
-}
-
-.custom-calendar input {
-  width: 100%;
-  padding: 12px 16px;
-  border-radius: 10px;
-  border: 1px solid #cbd5e1;
-  font-size: 16px;
-  color: #2d3748;
-  background-color: #f9fafb;
-  transition: all 0.3s ease;
-  text-align: center; /* Center the text inside the input */
-}
-
-.custom-calendar input:focus {
-  border-color: #38b2ac;
-  box-shadow: 0 0 10px rgba(56, 178, 172, 0.3);
-  outline: none;
-}
-
-@media (max-width: 768px) {
-  .custom-calendar {
-    max-width: 90%; /* Expand to use 90% of screen width */
-    padding: 0 10px;
-  }
-
-  .custom-calendar label {
-    font-size: 16px;
-  }
-
-  .custom-calendar input {
-    padding: 14px 18px;
-    font-size: 18px;
-    border-radius: 10px; /* Make input more rounded on mobile */
-    margin-right: 20%;
-  }
-}
-
     </style>
     
   </head>
   <body>
     <div class="form-container">
       <h2>Enter Employee Details</h2>
+      <label for="payMonth">Pay Slip For</label>
       <div class="custom-calendar">
-        <label for="payMonth">Pay Slip For</label>
         <input type="month" id="payMonth" required />
       </div>
-      
       <form id="empForm">
         <div class="emp-section">
           <div class="emp-d">
