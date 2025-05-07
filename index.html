@@ -104,12 +104,32 @@
     }
 
     .custom-calendar input {
-      padding: 12px;
-      border-radius: 8px;
-      border: 1px solid #cbd5e1;
-      font-size: 16px;
-      color: #2d3748;
-    }
+  -webkit-appearance: none; /* Remove native iOS styling */
+  appearance: none;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #cbd5e1;
+  font-size: 17px;
+  color: #2d3748;
+  background-color: #ffffff;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.custom-calendar input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+/* Optional: Prevent iOS yellow autofill */
+input:-webkit-autofill {
+  background-color: #ffffff !important;
+  box-shadow: 0 0 0px 1000px #ffffff inset !important;
+}
+
 
     .payslip-container, .payslip-preview {
       display: none;
@@ -131,9 +151,18 @@
     }
 
     /* Custom Calendar Style */
-    input[type="month"]::-webkit-appearance: none;
-    input[type="month"]::-moz-appearance: none;
-    input[type="month"]::-ms-appearance: none;
+    input[type="month"]::-webkit-appearance {
+  appearance: none;
+}
+
+input[type="month"]::-moz-appearance {
+  appearance: none;
+}
+
+input[type="month"]::-ms-appearance {
+  appearance: none;
+}
+
     input[type="month"] {
       background-color: #f9fafb;
       border: 1px solid #cbd5e1;
