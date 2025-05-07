@@ -1,59 +1,69 @@
-const form = document.getElementById('empForm');
-const payslipContainer = document.getElementById('payslipContainer');
+const form = document.getElementById("empForm");
+const payslipContainer = document.getElementById("payslipContainer");
 
 // Paid Days Calculation
-document.getElementById('workingDays').addEventListener('input', calcPaidDays);
-document.getElementById('leaves').addEventListener('input', calcPaidDays);
+document.getElementById("workingDays").addEventListener("input", calcPaidDays);
+document.getElementById("leaves").addEventListener("input", calcPaidDays);
 
 function calcPaidDays() {
-  document.getElementById('grossWages').value || 0;
-  const wd = +document.getElementById('workingDays').value || 0;
-  const lv = +document.getElementById('leaves').value || 0;
-  document.getElementById('paidDays').value = wd - lv;
+  document.getElementById("grossWages").value || 0;
+  const wd = +document.getElementById("workingDays").value || 0;
+  const lv = +document.getElementById("leaves").value || 0;
+  document.getElementById("paidDays").value = wd - lv;
 }
 
 // Total Earnings & Deductions Calculation
 function calcTotals() {
-  const get = id => +document.getElementById(id).value || 0;
-  const totalEarnings = get('basic') + get('hra') + get('conveyance') + get('medical') + get('otherAllowance');
-  const totalDeductions = get('epf') + get('esi') + get('pt') + get('welfare') + get('advance');
-  document.getElementById('totalEarningsInput').value = totalEarnings;
-  document.getElementById('totalDeductionsInput').value = totalDeductions;
-  document.getElementById('netSalaryInput').value = totalEarnings - totalDeductions;
+  const get = (id) => +document.getElementById(id).value || 0;
+  const totalEarnings =
+    get("basic") +
+    get("hra") +
+    get("conveyance") +
+    get("medical") +
+    get("otherAllowance");
+  const totalDeductions =
+    get("epf") + get("esi") + get("pt") + get("welfare") + get("advance");
+  document.getElementById("totalEarningsInput").value = totalEarnings;
+  document.getElementById("totalDeductionsInput").value = totalDeductions;
+  document.getElementById("netSalaryInput").value =
+    totalEarnings - totalDeductions;
 }
 
-['basic', 'hra', 'conveyance', 'medical', 'otherAllowance'].forEach(id => {
-  document.getElementById(id).addEventListener('input', calcTotals);
+["basic", "hra", "conveyance", "medical", "otherAllowance"].forEach((id) => {
+  document.getElementById(id).addEventListener("input", calcTotals);
 });
-['epf', 'esi', 'pt', 'welfare', 'advance'].forEach(id => {
-  document.getElementById(id).addEventListener('input', calcTotals);
+["epf", "esi", "pt", "welfare", "advance"].forEach((id) => {
+  document.getElementById(id).addEventListener("input", calcTotals);
 });
 
-form.addEventListener('submit', function (e) {
+form.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  const get = id => +document.getElementById(id).value || 0;
-  const text = id => document.getElementById(id).value;
+  const get = (id) => +document.getElementById(id).value || 0;
+  const text = (id) => document.getElementById(id).value;
 
-  const payMonth = document.getElementById('payMonth').value;
-  const formattedMonth = new Date(payMonth).toLocaleString('default', { month: 'long', year: 'numeric' });
+  const payMonth = document.getElementById("payMonth").value;
+  const formattedMonth = new Date(payMonth).toLocaleString("default", {
+    month: "long",
+    year: "numeric",
+  });
 
   const earnings = {
-    basic: get('basic'),
-    hra: get('hra'),
-    conveyance: get('conveyance'),
-    medical: get('medical'),
-    other: get('otherAllowance'),
+    basic: get("basic"),
+    hra: get("hra"),
+    conveyance: get("conveyance"),
+    medical: get("medical"),
+    other: get("otherAllowance"),
   };
   const deductions = {
-    epf: get('epf'),
-    esi: get('esi'),
-    pt: get('pt'),
-    welfare: get('welfare'),
-    advance: get('advance'),
+    epf: get("epf"),
+    esi: get("esi"),
+    pt: get("pt"),
+    welfare: get("welfare"),
+    advance: get("advance"),
   };
 
-const invoiceHTML = `
+  const invoiceHTML = `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -742,19 +752,27 @@ video {
                     <td class="w-1/2 align-top">
                       <div class="text-sm text-neutral-600">
                         <p class="font-bold">Employee Information</p>
-                        <p>Employee ID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <span>${text('empId')}</span></p>
-                        <p>Employee Name &nbsp; : <span>${text('empName')}</span></p>
-                        <p>Designation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <span>${text('designation')}</span></p>
-                        <p>Department&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <span>${text('department')}</span></p>
+                        <p>Employee ID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <span>${text(
+                          "empId"
+                        )}</span></p>
+                        <p>Employee Name &nbsp; : <span>${text(
+                          "empName"
+                        )}</span></p>
+                        <p>Designation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <span>${text(
+                          "designation"
+                        )}</span></p>
+                        <p>Department&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <span>${text(
+                          "department"
+                        )}</span></p>
                       </div>
                     </td>
                     <td class="w-1/2 align-top text-right">
                       <div class="text-sm text-neutral-600">
                         <p class="font-bold">Employee Bank</p>
-                        <p>Bank Name: ${text('bankName')} </p>
-                        <p>Bank Number: ${get('accNumber')}</p>
-                        <p>IFSC Code : ${text('IFSC')}</p>
-                        <p>Branch : ${text('Branch')}</p>
+                        <p>Bank Name: ${text("bankName")} </p>
+                        <p>Bank Number: ${get("accNumber")}</p>
+                        <p>IFSC Code : ${text("IFSC")}</p>
+                        <p>Branch : ${text("Branch")}</p>
                       </div>
                     </td>
                   </tr>
@@ -775,22 +793,30 @@ video {
                   <tr>
                     <td class="border-b py-3 pl-3">1.</td>
                     <td class="border-b py-3 pl-2">Gross Wages</td>
-                    <td class="border-b py-3 pl-2 text-right">${get('grossWages')}</td>
+                    <td class="border-b py-3 pl-2 text-right">${get(
+                      "grossWages"
+                    )}</td>
                   </tr>
                   <tr>
                     <td class="border-b py-3 pl-3">2.</td>
                     <td class="border-b py-3 pl-2">Total Working Days</td>
-                    <td class="border-b py-3 pl-2 text-right">${get('workingDays')}</td>
+                    <td class="border-b py-3 pl-2 text-right">${get(
+                      "workingDays"
+                    )}</td>
                   </tr>
                   <tr>
                     <td class="border-b py-3 pl-3">4.</td>
                     <td class="border-b py-3 pl-2">Leaves</td>
-                    <td class="border-b py-3 pl-2 text-right">${get('leaves')}</td>
+                    <td class="border-b py-3 pl-2 text-right">${get(
+                      "leaves"
+                    )}</td>
                   </tr>
                   <tr>
                     <td class="border-b py-3 pl-3">5.</td>
                     <td class="border-b py-3 pl-2">Paid Days</td>
-                    <td class="border-b py-3 pl-2 text-right">${get('paidDays')}</td>
+                    <td class="border-b py-3 pl-2 text-right">${get(
+                      "paidDays"
+                    )}</td>
                   </tr>
                 </tbody>
               </table>
@@ -810,10 +836,14 @@ video {
                 <tbody>
                   <tr>
                     <td class="border-b py-3 pl-2">Basic</td>
-                    <td class="border-b py-3 pl-2 text-right">${earnings.basic}</td>
+                    <td class="border-b py-3 pl-2 text-right">${
+                      earnings.basic
+                    }</td>
                     <td class="border-b py-3 pl-2 text-center"></td>
                     <td class="border-b py-3 pl-2">EPF</td>
-                    <td class="border-b py-3 pl-2 text-right">${deductions.epf}</td>
+                    <td class="border-b py-3 pl-2 text-right">${
+                      deductions.epf
+                    }</td>
                   </tr>
                    <tr>
                 <td class="border-b py-3 pl-2">HRA</td>
@@ -825,31 +855,43 @@ video {
               </tr>
               <tr>
                 <td class="border-b py-3 pl-2">Conveyance Allowance</td>
-                <td class="border-b py-3 pl-2 text-right">${earnings.conveyance}</td>
+                <td class="border-b py-3 pl-2 text-right">${
+                  earnings.conveyance
+                }</td>
                 <td class="border-b py-3 pl-2 text-center"></td>
                 <td class="border-b py-3 pl-2">Professional Tax</td>
                 <td class="border-b py-3 pl-2 text-right">${deductions.pt}</td>
               </tr>
               <tr>
                 <td class="border-b py-3 pl-2">Medical Allowance</td>
-                <td class="border-b py-3 pl-2 text-right">${earnings.medical}</td>
+                <td class="border-b py-3 pl-2 text-right">${
+                  earnings.medical
+                }</td>
                 <td class="border-b py-3 pl-2 text-center"></td>
                 <td class="border-b py-3 pl-2">Welfar Fond</td>
-                <td class="border-b py-3 pl-2 text-right">${deductions.welfare}</td>
+                <td class="border-b py-3 pl-2 text-right">${
+                  deductions.welfare
+                }</td>
               </tr>
               <tr>
                 <td class="border-b py-3 pl-2">Other Allowance</td>
                 <td class="border-b py-3 pl-2 text-right">${earnings.other}</td>
                 <td class="border-b py-3 pl-2 text-center"></td>
                 <td class="border-b py-3 pl-2">Advance</td>
-                <td class="border-b py-3 pl-2 text-right">${deductions.advance}</td>
+                <td class="border-b py-3 pl-2 text-right">${
+                  deductions.advance
+                }</td>
               </tr>
                   <tr>
                     <td class="border-b py-3 pl-2 font-bold">[A] Total Earnings</td>
-                    <td class="border-b py-3 pl-2 text-right font-bold">${get('totalEarningsInput')}</td>
+                    <td class="border-b py-3 pl-2 text-right font-bold">${get(
+                      "totalEarningsInput"
+                    )}</td>
                     <td class="border-b py-3 pl-2 text-center"></td>
                     <td class="border-b py-3 pl-2 font-bold">[B] Total Deductions</td>
-                    <td class="border-b py-3 pl-2 text-right font-bold">${get('totalDeductionsInput')}</td>
+                    <td class="border-b py-3 pl-2 text-right font-bold">${get(
+                      "totalDeductionsInput"
+                    )}</td>
                   </tr>
                   <tr>
                 <td colspan="7">
@@ -873,7 +915,9 @@ video {
                                   <div class="whitespace-nowrap font-bold text-white">[A] - [B] =  Net Salary :</div>
                                 </td>
                                 <td class="bg-main p-3 text-right">
-                                  <div class="whitespace-nowrap font-bold text-white">${get('netSalaryInput')}</div>
+                                  <div class="whitespace-nowrap font-bold text-white">${get(
+                                    "netSalaryInput"
+                                  )}</div>
                                 </td>
                               </tr>
                             </tbody>
@@ -937,9 +981,8 @@ video {
 </body>
 </html>
 
-`
-  const blob = new Blob([invoiceHTML], { type: 'text/html' });
+`;
+  const blob = new Blob([invoiceHTML], { type: "text/html" });
   const blobUrl = URL.createObjectURL(blob);
-  window.open(blobUrl, '_blank');
+  window.open(blobUrl, "_blank");
 });
-
