@@ -1,59 +1,3 @@
-const form = document.getElementById('empForm');
-const payslipContainer = document.getElementById('payslipContainer');
-
-// Paid Days Calculation
-document.getElementById('workingDays').addEventListener('input', calcPaidDays);
-document.getElementById('leaves').addEventListener('input', calcPaidDays);
-
-function calcPaidDays() {
-  document.getElementById('grossWages').value || 0;
-  const wd = +document.getElementById('workingDays').value || 0;
-  const lv = +document.getElementById('leaves').value || 0;
-  document.getElementById('paidDays').value = wd - lv;
-}
-
-// Total Earnings & Deductions Calculation
-function calcTotals() {
-  const get = id => +document.getElementById(id).value || 0;
-  const totalEarnings = get('basic') + get('hra') + get('conveyance') + get('medical') + get('otherAllowance');
-  const totalDeductions = get('epf') + get('esi') + get('pt') + get('welfare') + get('advance');
-  document.getElementById('totalEarningsInput').value = totalEarnings;
-  document.getElementById('totalDeductionsInput').value = totalDeductions;
-  document.getElementById('netSalaryInput').value = totalEarnings - totalDeductions;
-}
-
-['basic', 'hra', 'conveyance', 'medical', 'otherAllowance'].forEach(id => {
-  document.getElementById(id).addEventListener('input', calcTotals);
-});
-['epf', 'esi', 'pt', 'welfare', 'advance'].forEach(id => {
-  document.getElementById(id).addEventListener('input', calcTotals);
-});
-
-form.addEventListener('submit', function (e) {
-  e.preventDefault();
-
-  const get = id => +document.getElementById(id).value || 0;
-  const text = id => document.getElementById(id).value;
-
-  const payMonth = document.getElementById('payMonth').value;
-  const formattedMonth = new Date(payMonth).toLocaleString('default', { month: 'long', year: 'numeric' });
-
-  const earnings = {
-    basic: get('basic'),
-    hra: get('hra'),
-    conveyance: get('conveyance'),
-    medical: get('medical'),
-    other: get('otherAllowance'),
-  };
-  const deductions = {
-    epf: get('epf'),
-    esi: get('esi'),
-    pt: get('pt'),
-    welfare: get('welfare'),
-    advance: get('advance'),
-  };
-
-const invoiceHTML = `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -936,10 +880,3 @@ video {
   </script>
 </body>
 </html>
-
-`
-  const blob = new Blob([invoiceHTML], { type: 'text/html' });
-  const blobUrl = URL.createObjectURL(blob);
-  window.open(blobUrl, '_blank');
-});
-
