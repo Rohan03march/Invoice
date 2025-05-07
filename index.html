@@ -198,47 +198,78 @@ input[type="month"]::-ms-appearance {
   margin: 20px 0;
 }
 
+/* Button Styles */
 .add-btn {
   background-color: #667eea;
   color: white;
-  padding: 10px 25px;
+  padding: 12px 30px; /* Adjust padding for better tap size */
   border: none;
   border-radius: 8px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  width: 100%; /* Full width on mobile */
+  box-sizing: border-box;
+  text-align: center; /* Center text */
 }
 
 .add-btn:hover {
   background-color: #5a67d8;
 }
 
-.button-row {
-  display: flex;
-  justify-content: center;
-  gap: 20px; /* spacing between buttons */
-  margin-top: 20px;
-}
-
-.button-row button {
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-}
+/* Update button */
 .update-btn {
   background-color: #6366F1; /* Indigo color */
   color: white;
   border: none;
   border-radius: 8px;
   font-weight: 600;
-  padding: 10px 20px;
+  padding: 12px 30px;
   transition: background-color 0.3s ease;
+  width: 100%; /* Full width on mobile */
+  box-sizing: border-box;
+  text-align: center; /* Center text */
 }
 
 .update-btn:hover {
   background-color: #4F46E5;
 }
+
+/* Button Row Layout */
+.button-row {
+  display: flex;
+  justify-content: space-between; /* Position buttons on left and right */
+  margin-top: 20px;
+  flex-wrap: wrap; /* Allow wrapping on small screens */
+  gap: 10px; /* Add a small gap between buttons */
+  padding: 0 10px; /* Add horizontal padding for mobile */
+}
+
+/* Individual Button Styles */
+.button-row button {
+  padding: 12px 25px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 48%; /* Ensure buttons take up ~50% width of container */
+  box-sizing: border-box;
+  text-align: center; /* Center text inside buttons */
+}
+
+/* Responsive Design for Mobile Devices */
+@media (max-width: 600px) {
+  .button-row {
+    justify-content: space-between; /* Keep the buttons on left and right */
+    padding: 0 10px; /* Add horizontal padding */
+  }
+
+  .button-row button {
+    width: 48%; /* Keep buttons side by side */
+    font-size: 14px; /* Adjust font size for better readability on small screens */
+    padding: 12px 20px; /* Adjust padding for mobile */
+  }
+}
+
 
 
 
