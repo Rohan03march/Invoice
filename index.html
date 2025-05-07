@@ -125,16 +125,19 @@
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
 }
 
-/* Make it look nice even when empty (e.g., no month selected yet) */
-.custom-calendar input:invalid {
-  color: #94a3b8; /* muted slate color for empty input */
-}
-
-/* Optional: Remove yellow autofill background in iOS */
+/* Remove yellow autofill background in iOS and apply same background color */
 input:-webkit-autofill {
   background-color: #ffffff !important;
   box-shadow: 0 0 0px 1000px #ffffff inset !important;
   -webkit-text-fill-color: #2d3748 !important;
+}
+
+/* Make the invalid state look the same as autofill */
+.custom-calendar input:invalid {
+  color: #2d3748; /* Normal text color */
+  background-color: #ffffff; /* Same background as autofill */
+  border: 1px solid #cbd5e1; /* Same border */
+  box-shadow: none; /* No extra shadow */
 }
 
 
