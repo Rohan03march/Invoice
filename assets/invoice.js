@@ -889,7 +889,7 @@ video {
             </div>
             <div class="px-14 py-10 text-sm text-neutral-700">
                 <p class="text-main font-bold">Note:</p>
-                <p class="italic"></p>
+                <p class="italic">⚠️ This is a computer-generated document. Do not sign.</p>
                 </div>
   </div>
   <script>
