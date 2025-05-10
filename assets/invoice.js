@@ -938,15 +938,8 @@ video {
 </html>
 
 `
-const iframe = document.createElement('iframe');
-iframe.style.display = 'none';
-document.body.appendChild(iframe);
-iframe.srcdoc = invoiceHTML;
-iframe.onload = () => iframe.contentWindow.print();
 
-
-
-//   const blob = new Blob([invoiceHTML], { type: 'text/html' });
-// const blobUrl = URL.createObjectURL(blob);
-// window.location.href = blobUrl;
+const blob = new Blob([invoiceHTML], { type: 'text/html' });
+const blobUrl = URL.createObjectURL(blob);
+window.location.href = blobUrl;
 });
