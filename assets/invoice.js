@@ -908,7 +908,7 @@ video {
             }
           })
           .from(payslipElement)
-          .save('${text('empName')}_${formattedMonth}_payslip.pdf');
+          .save('${text('empName')}_${formattedMonth}_Payslip.pdf');
       };
 
       if (images.length === 0) {
@@ -942,4 +942,3 @@ video {
   const blobUrl = URL.createObjectURL(blob);
   window.open(blobUrl, '_blank');
 });
-

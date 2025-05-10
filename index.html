@@ -172,10 +172,9 @@
         .form-container {
           padding: 20px;
         }
-    
-        .button-row button {
-          width: 100%;
-        }
+      }
+      .star {
+        color: red;
       }
     </style>
     
@@ -183,7 +182,7 @@
   <body>
     <div class="form-container">
       <h2>Enter Employee Details</h2>
-      <label for="payMonth">Pay Slip For</label>
+      <label for="payMonth">Pay Slip For<span class="star">*</span></label>
       <div class="custom-calendar">
         <input type="month" id="payMonth" required />
       </div>
@@ -191,37 +190,37 @@
         <div class="emp-section">
           <div class="emp-d">
             <div class="input-group">
-              <label for="empId">Employee ID</label>
+              <label for="empId">Employee ID<span class="star">*</span></label>
               <input type="text" id="empId" required />
             </div>
             <div class="input-group">
-              <label for="empName">Employee Name</label>
+              <label for="empName">Employee Name<span class="star">*</span></label>
               <input type="text" id="empName" required />
             </div>
             <div class="input-group">
-              <label for="designation">Designation</label>
+              <label for="designation">Designation<span class="star">*</span></label>
               <input type="text" id="designation" required />
             </div>
             <div class="input-group">
-              <label for="department">Department</label>
+              <label for="department">Department<span class="star">*</span></label>
               <input type="text" id="department" required />
             </div>
           </div>
           <div class="emp-b">
             <div class="input-group">
-              <label for="bankName">Bank Name</label>
+              <label for="bankName">Bank Name<span class="star">*</span></label>
               <input type="text" id="bankName" required />
             </div>
             <div class="input-group">
-              <label for="accNumber">Account Number </label>
+              <label for="accNumber">Account Number<span class="star">*</span></label>
               <input type="number" id="accNumber" required />
             </div>
             <div class="input-group">
-              <label for="IFSC">IFSC Code</label>
+              <label for="IFSC">IFSC Code<span class="star">*</span></label>
               <input type="text" id="IFSC" required />
             </div>
             <div class="input-group">
-              <label for="Branch">Branch</label>
+              <label for="Branch">Branch<span class="star">*</span></label>
               <input type="text" id="Branch" required />
             </div>
           </div>
@@ -239,19 +238,19 @@
 
         <h3>Attendance & Wages</h3>
         <div class="input-group">
-          <label for="grossWages">Gross Wages</label>
+          <label for="grossWages">Gross Wages<span class="star">*</span></label>
           <input type="number" id="grossWages" required />
         </div>
         <div class="input-group">
-          <label for="workingDays">Total Working Days</label>
+          <label for="workingDays">Total Working Days<span class="star">*</span></label>
           <input type="number" id="workingDays" required />
         </div>
         <div class="input-group">
-          <label for="lopDays">LOP Days (Leave without Pay)</label>
+          <label for="lopDays">LOP Days (Leave without Pay)<span class="star">*</span></label>
           <input type="number" id="lopDays" required />
         </div>
         <div class="input-group">
-          <label for="leaves">Leaves Taken</label>
+          <label for="leaves">Leaves Taken<span class="star">*</span></label>
           <input type="number" id="leaves" required />
         </div>
         <div class="input-group">
@@ -261,23 +260,23 @@
 
         <h3>Earnings</h3>
         <div class="input-group">
-          <label for="basic">Basic</label>
+          <label for="basic">Basic<span class="star">*</span></label>
           <input type="number" id="basic" required />
         </div>
         <div class="input-group">
-          <label for="hra">HRA (House Rent Allowance)</label>
+          <label for="hra">HRA (House Rent Allowance)<span class="star">*</span></label>
           <input type="number" id="hra" required />
         </div>
         <div class="input-group">
-          <label for="conveyance">Conveyance Allowance</label>
+          <label for="conveyance">Conveyance Allowance<span class="star">*</span></label>
           <input type="number" id="conveyance" required />
         </div>
         <div class="input-group">
-          <label for="medical">Medical Allowance</label>
+          <label for="medical">Medical Allowance<span class="star">*</span></label>
           <input type="number" id="medical" required />
         </div>
         <div class="input-group">
-          <label for="otherAllowance">Other Allowances</label>
+          <label for="otherAllowance">Other Allowances<span class="star">*</span></label>
           <input type="number" id="otherAllowance" required />
         </div>
         <div class="input-group">
@@ -287,23 +286,23 @@
 
         <h3>Deductions</h3>
         <div class="input-group">
-          <label for="epf">EPF (Employees' Provident Fund)</label>
+          <label for="epf">EPF (Employees' Provident Fund)<span class="star">*</span></label>
           <input type="number" id="epf" required />
         </div>
         <div class="input-group">
-          <label for="esi">ESI (Employees' State Insurance)</label>
+          <label for="esi">ESI (Employees' State Insurance)<span class="star">*</span></label>
           <input type="number" id="esi" required />
         </div>
         <div class="input-group">
-          <label for="pt">Professional Tax</label>
+          <label for="pt">Professional Tax<span class="star">*</span></label>
           <input type="number" id="pt" required />
         </div>
         <div class="input-group">
-          <label for="welfare">Welfare Fund</label>
+          <label for="welfare">Welfare Fund<span class="star">*</span></label>
           <input type="number" id="welfare" required />
         </div>
         <div class="input-group">
-          <label for="advance">Advance</label>
+          <label for="advance">Advance<span class="star">*</span></label>
           <input type="number" id="advance" required />
         </div>
         <div class="input-group">
