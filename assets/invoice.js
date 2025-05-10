@@ -892,56 +892,27 @@ video {
                 <p class="italic">⚠️ This is a computer-generated document. Do not sign.</p>
                 </div>
   </div>
- <script>
-  window.onload = function () {
-    const payslipElement = document.getElementById('payslip-container');
-    const images = payslipElement.querySelectorAll('img');
-    let loadedImages = 0;
+  <script>
+    window.onload = function () {
+      const payslipElement = document.getElementById('payslip-container');
+      const images = payslipElement.querySelectorAll('img');
+      let loadedImages = 0;
 
-    const empName = text('empName'); // Replace this with your actual function
-    const formattedMonth = getFormattedMonth(); // Replace this with your actual function
-
-    const generateAndSharePDF = async () => {
-      const filename = '${empName}_${formattedMonth}_Payslip.pdf';
-
-      const options = {
-        margin: 0,
-        filename: filename,
-        html2canvas: {
-          allowTaint: true,
-          useCORS: true,
-          logging: true
-        },
-        jsPDF: {
-          unit: 'mm',
-          format: 'a4',
-          orientation: 'portrait'
-        }
+      const generatePDF = () => {
+        html2pdf()
+          .set({
+            html2canvas: {
+              allowTaint: true,
+              useCORS: true,
+              logging: true
+            }
+          })
+          .from(payslipElement)
+          .save('${text('empName')}_${formattedMonth}_Payslip.pdf');
       };
 
-      // Generate blob instead of downloading
-      const pdfBlob = await html2pdf().set(options).from(payslipElement).outputPdf('blob');
-      const file = new File([pdfBlob], filename, { type: 'application/pdf' });
-
-      if (navigator.canShare && navigator.canShare({ files: [file] })) {
-        try {
-          await navigator.share({
-            title: 'Payslip',
-            text: 'Here is your payslip for ${empName} (${formattedMonth})',
-            files: [file]
-          });
-        } catch (err) {
-          console.error('Share failed:', err);
-        }
-      } else {
-        // Fallback: download
-        html2pdf().set(options).from(payslipElement).save();
-      }
-    };
-
-    const checkImagesAndGenerate = () => {
       if (images.length === 0) {
-        generateAndSharePDF();
+        generatePDF();
       } else {
         images.forEach(img => {
           if (img.complete) {
@@ -950,35 +921,19 @@ video {
             img.onload = img.onerror = () => {
               loadedImages++;
               if (loadedImages === images.length) {
-                generateAndSharePDF();
+                generatePDF();
               }
             };
           }
         });
 
+        // Edge case: all were already loaded
         if (loadedImages === images.length) {
-          generateAndSharePDF();
+          generatePDF();
         }
       }
     };
-
-    checkImagesAndGenerate();
-  };
-
-  // Dummy helper functions (replace with actual logic)
-  function text(key) {
-    if (key === 'empName') return 'JohnDoe';
-    return '';
-  }
-
-  function getFormattedMonth() {
-    const date = new Date();
-    const month = date.toLocaleString('default', { month: 'long' });
-    const year = date.getFullYear();
-    return '${month}${year}';
-  }
-</script>
-
+  </script>
 </body>
 </html>
 
