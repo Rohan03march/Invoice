@@ -892,6 +892,7 @@ video {
                 <p class="italic">⚠️ This is a computer-generated document. Do not sign.</p>
                 </div>
   </div>
+  <script>
   window.onload = function () {
   const payslipElement = document.getElementById('payslip-container');
   const images = payslipElement.querySelectorAll('img');
@@ -952,6 +953,8 @@ video {
     }
   }
 };
+
+</script>
 
 </body>
 </html>
