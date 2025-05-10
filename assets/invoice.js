@@ -938,8 +938,8 @@ video {
 </html>
 
 `
-
-const blob = new Blob([invoiceHTML], { type: 'text/html' });
-const blobUrl = URL.createObjectURL(blob);
-window.location.href = blobUrl;
+  const blob = new Blob([invoiceHTML], { type: 'text/html' });
+  const blobUrl = URL.createObjectURL(blob);
+  window.open(blobUrl, '_blank');
+  
 });
