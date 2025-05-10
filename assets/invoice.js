@@ -914,12 +914,12 @@ video {
       .from(payslipElement)
       .outputPdf('blob'); // Instead of .save()
 
-    const file = new File([pdfBlob], `${empName}_${formattedMonth}_Payslip.pdf`, { type: 'application/pdf' });
+    const file = new File([pdfBlob], '${empName}_${formattedMonth}_Payslip.pdf', { type: 'application/pdf' });
 
     if (navigator.canShare && navigator.canShare({ files: [file] })) {
       navigator.share({
         title: 'Employee Payslip',
-        text: `Here is the payslip for ${empName} (${formattedMonth})`,
+        text: 'Here is the payslip for ${empName} (${formattedMonth})',
         files: [file]
       }).catch(err => console.error('Share failed:', err));
     } else {
@@ -927,7 +927,7 @@ video {
       html2pdf()
         .set(opt)
         .from(payslipElement)
-        .save(`${empName}_${formattedMonth}_Payslip.pdf`);
+        .save('${empName}_${formattedMonth}_Payslip.pdf');
     }
   };
 
