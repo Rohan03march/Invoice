@@ -938,7 +938,15 @@ video {
 </html>
 
 `
+  // const blob = new Blob([invoiceHTML], { type: 'text/html' });
+  // const blobUrl = URL.createObjectURL(blob);
+  // window.open(blobUrl, '_blank');
   const blob = new Blob([invoiceHTML], { type: 'text/html' });
-  const blobUrl = URL.createObjectURL(blob);
-  window.open(blobUrl, '_blank');
+const blobUrl = URL.createObjectURL(blob);
+
+const a = document.createElement('a');
+a.href = blobUrl;
+a.target = '_blank'; // Opens in new tab
+a.click();
+
 });
