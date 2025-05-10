@@ -943,10 +943,7 @@ video {
   // window.open(blobUrl, '_blank');
   const blob = new Blob([invoiceHTML], { type: 'text/html' });
 const blobUrl = URL.createObjectURL(blob);
+window.location.href = blobUrl;
 
-const a = document.createElement('a');
-a.href = blobUrl;
-a.target = '_blank'; // Opens in new tab
-a.click();
 
 });
