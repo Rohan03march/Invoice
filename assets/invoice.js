@@ -893,69 +893,47 @@ video {
                 </div>
   </div>
   <script>
-  window.onload = function () {
-  const payslipElement = document.getElementById('payslip-container');
-  const images = payslipElement.querySelectorAll('img');
-  let loadedImages = 0;
+    window.onload = function () {
+      const payslipElement = document.getElementById('payslip-container');
+      const images = payslipElement.querySelectorAll('img');
+      let loadedImages = 0;
 
-  const empName = text('empName'); // Get this from your logic
-  const formattedMonth = getFormattedMonth(); // Assume this function exists or replace with logic
+      const generatePDF = () => {
+        html2pdf()
+          .set({
+            html2canvas: {
+              allowTaint: true,
+              useCORS: true,
+              logging: true
+            }
+          })
+          .from(payslipElement)
+          .save('${text('empName')}_${formattedMonth}_Payslip.pdf');
+      };
 
-  const generatePDF = async () => {
-    const opt = {
-      html2canvas: {
-        allowTaint: true,
-        useCORS: true,
-        logging: true
+      if (images.length === 0) {
+        generatePDF();
+      } else {
+        images.forEach(img => {
+          if (img.complete) {
+            loadedImages++;
+          } else {
+            img.onload = img.onerror = () => {
+              loadedImages++;
+              if (loadedImages === images.length) {
+                generatePDF();
+              }
+            };
+          }
+        });
+
+        // Edge case: all were already loaded
+        if (loadedImages === images.length) {
+          generatePDF();
+        }
       }
     };
-
-    const pdfBlob = await html2pdf()
-      .set(opt)
-      .from(payslipElement)
-      .outputPdf('blob'); // Instead of .save()
-
-    const file = new File([pdfBlob], '${empName}_${formattedMonth}_Payslip.pdf', { type: 'application/pdf' });
-
-    if (navigator.canShare && navigator.canShare({ files: [file] })) {
-      navigator.share({
-        title: 'Employee Payslip',
-        text: 'Here is the payslip for ${empName} (${formattedMonth})',
-        files: [file]
-      }).catch(err => console.error('Share failed:', err));
-    } else {
-      // Fallback: download
-      html2pdf()
-        .set(opt)
-        .from(payslipElement)
-        .save('${empName}_${formattedMonth}_Payslip.pdf');
-    }
-  };
-
-  if (images.length === 0) {
-    generatePDF();
-  } else {
-    images.forEach(img => {
-      if (img.complete) {
-        loadedImages++;
-      } else {
-        img.onload = img.onerror = () => {
-          loadedImages++;
-          if (loadedImages === images.length) {
-            generatePDF();
-          }
-        };
-      }
-    });
-
-    if (loadedImages === images.length) {
-      generatePDF();
-    }
-  }
-};
-
-</script>
-
+  </script>
 </body>
 </html>
 
