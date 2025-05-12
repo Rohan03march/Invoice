@@ -104,6 +104,7 @@
       });
   });
   
+  
   document.getElementById('empName').addEventListener('blur', () => {
     const name = document.getElementById('empName').value.trim().toLowerCase();
     if (!name) return;

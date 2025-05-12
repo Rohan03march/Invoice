@@ -1,6 +1,7 @@
 const form = document.getElementById('empForm');
 const payslipContainer = document.getElementById('payslipContainer');
 
+
 // Paid Days Calculation
 document.getElementById('workingDays').addEventListener('input', calcPaidDays);
 document.getElementById('leaves').addEventListener('input', calcPaidDays);
