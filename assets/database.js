@@ -51,10 +51,6 @@
           name: empName,
           designation: document.getElementById('designation').value,
           department: document.getElementById('department').value,
-          bankName: document.getElementById('bankName').value,
-          accNumber: document.getElementById('accNumber').value,
-          IFSC: document.getElementById('IFSC').value,
-          Branch: document.getElementById('Branch').value
         };
   
         db.ref('employees/' + empId).set(empData)
@@ -75,10 +71,6 @@
       name: document.getElementById('empName').value,
       designation: document.getElementById('designation').value,
       department: document.getElementById('department').value,
-      bankName: document.getElementById('bankName').value,
-      accNumber: document.getElementById('accNumber').value,
-      IFSC: document.getElementById('IFSC').value,
-      Branch: document.getElementById('Branch').value
     };
   
     db.ref('employees/' + empId).once('value')
@@ -100,10 +92,6 @@
     document.getElementById('empName').value = data.name || '';
     document.getElementById('designation').value = data.designation || '';
     document.getElementById('department').value = data.department || '';
-    document.getElementById('bankName').value = data.bankName || '';
-    document.getElementById('accNumber').value = data.accNumber || '';
-    document.getElementById('IFSC').value = data.IFSC || '';
-    document.getElementById('Branch').value = data.Branch || '';
   }
   
   document.getElementById('empId').addEventListener('blur', () => {
