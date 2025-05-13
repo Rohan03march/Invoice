@@ -16,17 +16,17 @@ function calcPaidDays() {
 // Total Earnings & Deductions Calculation
 function calcTotals() {
   const get = id => +document.getElementById(id).value || 0;
-  const totalEarnings = get('basic') + get('hra') + get('conveyance') + get('medical') + get('otherAllowance');
-  const totalDeductions = get('epf') + get('esi') + get('pt') + get('welfare') + get('advance');
+  const totalEarnings = get('basic') + get('hra') + get('conveyance') + get('medical') + get('attendance') + get('bonus') + get('otherAllowance');
+  const totalDeductions = get('epf') + get('esi') + get('pt') + get('welfare') + get('insurance') + get('advance');
   document.getElementById('totalEarningsInput').value = totalEarnings;
   document.getElementById('totalDeductionsInput').value = totalDeductions;
   document.getElementById('netSalaryInput').value = totalEarnings - totalDeductions;
 }
 
-['basic', 'hra', 'conveyance', 'medical', 'otherAllowance'].forEach(id => {
+['basic', 'hra', 'conveyance', 'medical', 'attendance', 'bonus',  'otherAllowance'].forEach(id => {
   document.getElementById(id).addEventListener('input', calcTotals);
 });
-['epf', 'esi', 'pt', 'welfare', 'advance'].forEach(id => {
+['epf', 'esi', 'pt', 'welfare', 'insurance' , 'advance'].forEach(id => {
   document.getElementById(id).addEventListener('input', calcTotals);
 });
 
@@ -44,6 +44,8 @@ form.addEventListener('submit', function (e) {
     hra: get('hra'),
     conveyance: get('conveyance'),
     medical: get('medical'),
+    festival: get('bonus'),
+    attendence: get('attendance'),
     other: get('otherAllowance'),
   };
   const deductions = {
@@ -52,10 +54,11 @@ form.addEventListener('submit', function (e) {
     pt: get('pt'),
     welfare: get('welfare'),
     advance: get('advance'),
+    insurance: get('insurance')
   };
 
   const invoiceHTML = `
-  <!DOCTYPE html>
+    <!DOCTYPE html>
   <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -844,15 +847,29 @@ form.addEventListener('submit', function (e) {
                      <td class="border-b py-3 pl-2">Medical Allowance</td>
                      <td class="border-b py-3 pl-2 text-right">${earnings.medical}</td>
                      <td class="border-b py-3 pl-2 text-center"></td>
-                     <td class="border-b py-3 pl-2">Welfar Fond</td>
+                     <td class="border-b py-3 pl-2">Welfar Fund</td>
                      <td class="border-b py-3 pl-2 text-right">${deductions.welfare}</td>
                    </tr>
+                   <tr>
+                    <td class="border-b py-3 pl-2">Attendance Incentive</td>
+                    <td class="border-b py-3 pl-2 text-right">${earnings.attendence}</td>
+                    <td class="border-b py-3 pl-2 text-center"></td>
+                    <td class="border-b py-3 pl-2">Insurance</td>
+                    <td class="border-b py-3 pl-2 text-right">${deductions.insurance}</td>
+                  </tr>
+                  <tr>
+                    <td class="border-b py-3 pl-2">Festival Bonus</td>
+                    <td class="border-b py-3 pl-2 text-right">${earnings.festival}</td>
+                    <td class="border-b py-3 pl-2 text-center"></td>
+                    <td class="border-b py-3 pl-2">Advance</td>
+                     <td class="border-b py-3 pl-2 text-right">${deductions.advance}</td>
+                  </tr>
                    <tr>
                      <td class="border-b py-3 pl-2">Other Allowance</td>
                      <td class="border-b py-3 pl-2 text-right">${earnings.other}</td>
                      <td class="border-b py-3 pl-2 text-center"></td>
-                     <td class="border-b py-3 pl-2">Advance</td>
-                     <td class="border-b py-3 pl-2 text-right">${deductions.advance}</td>
+                     <td class="border-b py-3 pl-2"></td>
+                     <td class="border-b py-3 pl-2 text-right"></td>
                    </tr>
                        <tr>
                          <td class="border-b py-3 pl-2 font-bold">[A] Total Earnings</td>
@@ -897,10 +914,6 @@ form.addEventListener('submit', function (e) {
                      </tbody>
                    </table>
                  </div>
-                 <div class="px-14 py-10 text-sm text-neutral-700">
-                     <p class="text-main font-bold">Note:</p>
-                     <p class="italic">⚠️ This is a computer-generated document. Do not sign.</p>
-                     </div>
        </div>
     </div>
     </div>
@@ -948,8 +961,7 @@ form.addEventListener('submit', function (e) {
     </script>
   </body>
   </html>
-  
-  `
+  ` 
   const blob = new Blob([invoiceHTML], { type: 'text/html' });
   const blobUrl = URL.createObjectURL(blob);
   window.open(blobUrl, '_blank');
